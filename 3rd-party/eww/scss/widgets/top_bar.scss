@@ -1,0 +1,17 @@
+.workspaces {
+    padding: 0 .5em 0 .5em;
+    border-radius: 1em;
+    background-color: transparentize($color: $active_station, $amount: 0.4);
+}
+
+.workspace-btn {
+    margin-left: .2em;
+    margin-right: .2em;
+    &.active {color: $active_station;}
+    &:hover {color: $active_station;}
+    color: transparentize($color: $active_station, $amount: 0.5);
+
+    .icon {
+        font-size: 1.2em;
+    }
+}

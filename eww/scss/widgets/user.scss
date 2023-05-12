@@ -1,0 +1,42 @@
+@mixin user($width: 10em, $height: 10em) {
+    padding: 0;
+    min-height: 10em;
+    min-width:  25em;
+    background-color: transparent;
+    
+    .user-profile {
+        @include darkened($radii: $button_radius);
+        background-image: url($assets+'profile.jpeg');
+        background-size: cover;
+    }
+
+    .user-greeting{
+        // @include darkened($radii: $button_radius);
+        margin-left: 1em;
+        padding-top: 2em;
+        padding-bottom: 1em;
+        background-color: transparent;
+
+
+        // padding: .3em;
+        label{
+            text-shadow: $text_shadow;
+            &:first-child{
+                color: $fg_color;
+                font-size: 2em;
+            }
+            &:nth-child(2){
+                color: $fg_color;
+                font-size: 1em;
+            }
+            &:last-child{
+                color: $fg_color;
+                font-size: 1em;
+            }
+        }
+
+        button {
+            margin-bottom: 3em;
+        }
+    }
+}

@@ -1,0 +1,55 @@
+(defvar     media           "{}")
+(defvar     media_positions "{}")
+
+(defwidget panel_workspaces [orientation]
+    (box :class "workspaces"
+        (eventbox
+            (box
+                :space-evenly false
+                :orientation orientation
+                (for workspace in {workspaces.workspaces}
+                    (button
+                        :class "workspace-btn ${workspace.id == workspaces.active ? "active" : ""} ${workspace.windows > 0 ? "occupied" : "empty"}"
+                        :onclick "hyprctl dispatch workspace ${workspace.id}"
+                        :valign "center"
+                        (label :class "icon"
+                            :text "${workspace.id == workspaces.active ? "" : ""}"
+                        )
+                    )
+                )
+            )
+        )
+    )
+)
+
+
+(defwidget panel_media [] (box :class "button-bin" 
+    :visible {media.preferred != "null"}
+    (eventbox
+        :onclick "${EWW_CONFIG_DIR}/scripts/player ${media.preferred.name} play-pause"
+        :onscroll "${EWW_CONFIG_DIR}/scripts/player ${media.preferred.name} {}"
+        :class "button media"
+        (box
+            :space-evenly false
+            (label :class "icon ${media.preferred.name}" :text {media.preferred.icon})
+            (label :text "${media.preferred.artist} - ${media.preferred.title}")
+        )
+    )
+))
+
+(defwidget panel_window [angle] (box :class "button-bin"
+    (button :class "button window" 
+        (label
+            :visible {window != "null" ? true : false}
+            :text {window}
+            :angle angle)
+    )
+))
+
+(defwidget panel_clock [] (box :class "button-bin"
+    (button
+        :onclick "${EWW_CONFIG_DIR}/scripts/launcher toggle_menu calendar"
+        :class "button clock"
+        (label  :text "panel_clock")
+    )
+))

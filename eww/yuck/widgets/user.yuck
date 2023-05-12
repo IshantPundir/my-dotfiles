@@ -1,0 +1,38 @@
+(defwidget user [show_name ?class] (box
+    :class "user ${class}"
+    (box
+        :class "user-profile"
+    )
+    (box
+        :class "user-greeting"
+        :orientation "v"
+        :space-evenly false
+        (label
+            :visible show_name
+            :valign "START"
+            :halign "START"
+            :text "Hello!"
+        )
+        (label
+            :visible show_name
+            :vexpand true
+            :valign "START"
+            :halign "START"
+            :text real_name
+        )
+        (box
+            :class "user-notifications"
+            (button
+                :valign "TOP"
+                :halign "TOP"
+                :visible "${notifications.count > 0}"
+                :onclick "${EWW_CONFIG_DIR}/scripts/launcher toggle_menu quicksettings & ${EWW_CONFIG_DIR}/scripts/launcher toggle_menu notifications_center"
+                (label 
+                    :text "You got ${notifications.count} notifications"
+                    :valign "START"
+                    :halign "START"
+                )
+            )
+        )
+    )
+))

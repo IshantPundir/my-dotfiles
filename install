@@ -1,0 +1,9 @@
+#! /bin/bash
+
+rsync --exclude '3rd-party' -r ./ ~/.config
+
+# Install fonts
+# echo -e "\e[1;31m${bold}Coping fonts${normal}\e[0m"
+# mkdir $HOME/.fonts
+# rsync fonts/* $HOME/.fonts
+# fc-cache -r

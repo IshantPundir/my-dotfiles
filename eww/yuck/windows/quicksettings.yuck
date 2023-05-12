@@ -1,0 +1,51 @@
+(defwidget quick_sys_actions [] (box
+    :class "sys-actions"
+    :space-evenly false
+    (user
+        :show_name true
+        :class "widget")
+))
+
+(defwidget quick_toggles [] (box
+    :class "widget toggles"
+    (arrow_toggle_wifi)
+    (arrow_toggle_bt)
+))
+
+(defwidget quick_toggles_grid [] (box
+    :class "widget toggles"
+    :orientation "h"
+    (box
+        :orientation "h"
+        (small_toggle_dnd)
+        (small_toggle_mute)
+    )
+))
+
+(defwidget syslevels [] (box
+    :class "system"
+    :orientation "v"
+    (box :orientation "h"
+        (sysprogress_cpu)
+        (sysprogress_ram)
+        (sysprogress_temp)
+    )
+))
+
+(defwidget quicksettings [valign halign] (box
+    :valign valign
+    :halign halign
+    :class "quick-settings"
+    :orientation "v"
+    :space-evenly false
+    (quick_sys_actions)
+    (quick_toggles)
+    (sys_sliders :class "widget")
+    (box :orientation "v"
+        (quick_toggles_grid)
+        (syslevels)
+    )
+    (label :text media_positions :visible false) ;so it is active
+    (for player in {media.players}
+        (media_player :player player ))
+))
